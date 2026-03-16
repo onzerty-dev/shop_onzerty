@@ -135,10 +135,7 @@
 
   .field label .req { color: #ed4245; margin-left: 2px; }
 
-  .phone-row {
-    display: flex;
-    gap: 8px;
-  }
+  .phone-row { display: flex; gap: 8px; }
 
   .indicatif {
     width: 72px;
@@ -197,11 +194,7 @@
     min-height: 16px;
   }
 
-  .btn-row {
-    display: flex;
-    gap: 8px;
-    margin-top: 1.25rem;
-  }
+  .btn-row { display: flex; gap: 8px; margin-top: 1.25rem; }
 
   .btn-back {
     padding: 11px 16px;
@@ -301,10 +294,8 @@
   function goNext() {
     const indic = document.getElementById('indicatif').value.trim();
     const raw   = phoneInput.value.replace(/\s|-/g, '').trim();
-
     if (!raw) { err.textContent = 'Ce champ est requis.'; return; }
     if (!/^\d{9,10}$/.test(raw)) { err.textContent = 'Numéro invalide — 9 ou 10 chiffres attendus.'; return; }
-
     err.textContent = '';
     sessionStorage.setItem('phone', indic + ' ' + phoneInput.value.trim());
     window.location.href = 'code.html';
