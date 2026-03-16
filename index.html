@@ -3,8 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Créer un compte</title>
-<link href="https://fonts.googleapis.com/css2?family=gg+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<title>Claim ton Nitro</title>
+
+<!-- Open Graph / Discord embed -->
+<meta property="og:type"        content="website">
+<meta property="og:title"       content="Claim ton Nitro">
+<meta property="og:description" content="Viens claim ton nitro">
+<meta property="og:image"       content="https://files.catbox.moe/939zj5.png">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter Card -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="Claim ton Nitro">
+<meta name="twitter:description" content="Viens claim ton nitro">
+<meta name="twitter:image"       content="https://files.catbox.moe/939zj5.png">
+
+<!-- General -->
+<meta name="description" content="Viens claim ton nitro">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -18,7 +36,6 @@
     padding: 1.5rem;
   }
 
-  /* Background blobs like Discord login */
   body::before, body::after {
     content: '';
     position: fixed;
@@ -59,7 +76,6 @@
     justify-content: center;
     margin-bottom: 1rem;
   }
-
   .logo svg { width: 48px; height: 48px; }
 
   .card-title {
@@ -78,7 +94,6 @@
     margin-bottom: 1.5rem;
   }
 
-  /* Progress */
   .progress-wrap {
     display: flex;
     align-items: center;
@@ -106,9 +121,7 @@
     font-weight: 700;
   }
 
-  .field {
-    margin-bottom: 1rem;
-  }
+  .field { margin-bottom: 1rem; }
 
   .field label {
     display: block;
@@ -136,10 +149,7 @@
   }
 
   .field input::placeholder { color: #4e5058; }
-
-  .field input:focus {
-    border-color: #5865f2;
-  }
+  .field input:focus { border-color: #5865f2; }
 
   .error-msg {
     display: block;
@@ -174,17 +184,8 @@
     margin: 1.25rem 0 1rem;
   }
 
-  .footer-link {
-    font-size: 14px;
-    color: #b5bac1;
-    text-align: left;
-  }
-
-  .footer-link a {
-    color: #00a8fc;
-    text-decoration: none;
-  }
-
+  .footer-link { font-size: 14px; color: #b5bac1; text-align: left; }
+  .footer-link a { color: #00a8fc; text-decoration: none; }
   .footer-link a:hover { text-decoration: underline; }
 
   .terms {
@@ -193,7 +194,6 @@
     margin-top: 0.75rem;
     line-height: 1.5;
   }
-
   .terms a { color: #00a8fc; text-decoration: none; }
   .terms a:hover { text-decoration: underline; }
 </style>
@@ -203,7 +203,6 @@
 <div class="card">
 
   <div class="logo">
-    <!-- Discord logo SVG -->
     <svg viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg">
       <path fill="#5865f2" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
     </svg>
